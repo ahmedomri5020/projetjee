@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        /* Navbar styles */
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            padding-left: 35px;
+            position: relative; /* Ensure relative positioning for absolute positioning of child elements */
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Profile link styles */
+        .profile-link {
+            position: absolute;
+            top: 10px; /* Adjust top position as needed */
+            right: 10px; /* Adjust right position as needed */
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Container styles */
+        .container {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            width: 50%;
+            margin: 50px auto;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .container h1 {
+            font-family: Arial, sans-serif; /* Change to your preferred font-family */
+        }
+        .suggestion-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .suggestion-textarea {
+            width: calc(100% - 40px);
+            height: 200px;
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .submit-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+    <ul>
+        <li><a th:href="@{/home}">Home</a></li>
+        <li><a th:href="@{/leaveapplication}">Leave Application</a></li>
+        <li><a th:href="@{/myapplications}">My applications</a></li>
+    </ul>
+    <!-- Link My Profile -->
+    <a th:href="@{/profile}" class="profile-link">My profile</a>
+</nav>
+
+<!-- Content -->
+<div class="container">
+    <h1>Write us a suggestion!</h1>
+    <form class="suggestion-form" method="POST" action="/send-suggestion">
+        <textarea name="suggestion" class="suggestion-textarea" placeholder="Enter your suggestion here" required></textarea>
+        <button type="submit" class="submit-button">Send Suggestion</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Suggestions</title>
+    <style>
+        /* Center the table and its contents */
+        table {
+            margin: 0 auto; /* This will horizontally center the table */
+            width: 80%; /* Adjust the width as needed */
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        /* Center the action button */
+        .action-button {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Suggestion</th>
+            <th>Email</th>
+            <th>Action</th> <!-- Add a new column for action buttons -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="suggestion : ${suggestions}">
+            <td th:text="${suggestion.id}"></td>
+            <td th:text="${suggestion.fullName}"></td>
+            <td th:text="${suggestion.suggestion}"></td>
+            <td th:text="${suggestion.email}"></td>
+            <td>
+                <form th:action="@{/accept-suggestion}" method="post">
+                    <input type="hidden" name="id" th:value="${suggestion.id}" />
+                    <button class="action-button" type="submit">Accept</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Leave Applications</title>
+    <style>
+        /* Center the content horizontally */
+        body {
+            text-align: center;
+        }
+        h1 {
+            margin-top: 20px; /* Adjust margin as needed */
+        }
+        table {
+            margin: 0 auto; /* This will horizontally center the table */
+            width: 80%; /* Adjust the width as needed */
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        /* Center the action buttons */
+        form {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Leave Applications</h1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Days</th>
+            <th>Reason</th>
+            <th>Email</th>
+            <th>Action</th> <!-- Add a new column for action buttons -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="conge : ${conges}">
+            <td th:text="${conge.id}"></td>
+            <td th:text="${conge.fullName}"></td>
+            <td th:text="${conge.days}"></td>
+            <td th:text="${conge.reason}"></td>
+            <td th:text="${conge.email}"></td>
+            <td>
+                <form th:action="@{/approve-leave}" method="post">
+                    <input type="hidden" name="id" th:value="${conge.id}" />
+                    <button type="submit">Approve</button>
+                </form>
+                <form th:action="@{/decline-leave}" method="post">
+                    <input type="hidden" name="id" th:value="${conge.id}" />
+                    <button type="submit">Decline</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

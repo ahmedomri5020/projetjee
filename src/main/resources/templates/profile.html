@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile</title>
+    <style>
+        /* Form container styles */
+        .form-container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+        }
+        /* Form label styles */
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        /* Form input styles */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        /* Form button styles */
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        /* Form title styles */
+        h1 {
+            margin-top: 0;
+            color: #333;
+            font-size: 24px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Form container -->
+<div class="form-container">
+    <h1>My Profile</h1>
+    <!-- Profile update form -->
+    <form method="post" action="/update-profile">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" th:value="${employe.username}" th:placeholder="${employe.username}">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" th:value="${employe.email}" th:placeholder="${employe.email}">
+
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" th:value="${employe.fullName}" th:placeholder="${employe.fullName}">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" th:value="${employe.password}" th:placeholder="${employe.password}">
+
+        <button type="submit">Update Profile</button>
+    </form>
+</div>
+
+</body>
+</html>
